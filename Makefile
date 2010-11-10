@@ -39,7 +39,9 @@ install:
 	install -m 755 finddeps $(DESTDIR)/usr/bin
 	install -m 755 rebuildpkgs $(DESTDIR)/usr/bin
 	# install default config
+	install -d -m755 $(DESTDIR)/etc
 	install -d -m755 $(DESTDIR)/usr/share/devtools
+	install -m 644 devtools.conf $(DESTDIR)/etc
 	install -m 644 makepkg-i686.conf $(DESTDIR)/usr/share/devtools
 	install -m 644 makepkg-x86_64.conf $(DESTDIR)/usr/share/devtools
 	install -m 644 pacman-extra.conf $(DESTDIR)/usr/share/devtools
@@ -78,6 +80,7 @@ uninstall:
 	rm $(DESTDIR)/usr/bin/archrm
 	rm $(DESTDIR)/usr/bin/communityco
 	rm $(DESTDIR)/usr/bin/rebuildpkgs
+	rm $(DESTDIR)/etc/devtools.conf
 	rm $(DESTDIR)/usr/share/devtools/makepkg-i686.conf
 	rm $(DESTDIR)/usr/share/devtools/makepkg-x86_64.conf
 	rm $(DESTDIR)/usr/share/devtools/pacman-extra.conf

@@ -1,5 +1,25 @@
 #!/bin/bash
 
+CONFDIR="/etc"
+
+##
+# Source configuration
+##
+if [ -f "$CONFDIR/devtools.conf" ]; then
+        source "$CONFDIR/devtools.conf"
+else
+        error "Could not find configuration file $CONFDIR/devtools.conf"
+        exit 1
+fi
+
+##
+# User based overrides
+##
+[ -f ~/.devtools.conf ] && source ~/.devtools.conf
+
+##
+
+
 base_packages='base base-devel sudo'
 
 cmd="$(basename "${0%-build}")"
@@ -15,7 +35,7 @@ else
 	repo=${cmd%-*}
 	arch=${cmd#*-}
 fi
-chroots='/var/tmp/archbuild'
+
 clean_first=false
 
 usage() {
